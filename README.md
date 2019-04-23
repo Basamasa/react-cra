@@ -1,12 +1,27 @@
 # react-app
 Basic starting Framework for React with Elements UI
 
-## Project setup
+## Project setup (initial)
 ```
 npm install
 ```
 
-## Project run
+## Install serve
+```
+npm install -g serve
+```
+
+## Project run (Development)
 ```
 npm start
+```
+
+## Project build (Production)
+```
+npm run build
+```
+
+## Project run (Production)
+```
+serve -s build
 ```
