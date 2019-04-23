@@ -4,6 +4,35 @@ import ButtonPane from './ButtonPane';
 import NewTable from 'antd/lib/table';
 import 'antd/lib/table/style/index.css';
 import 'antd/lib/pagination/style/index.css';
+import 'react-virtualized/styles.css'
+import { Column as VColumn, Table as VTable} from 'react-virtualized';
+
+
+const headerRenderer = ({
+    columnData,
+    dataKey,
+    disableSort,
+    label,
+    sortBy,
+    sortDirection
+  }) => (
+    <div>{dataKey}</div>
+  )
+
+function ColumnMaker(props) {
+    console.log(props.cols);
+    const items = props.cols.map((curr) => 
+        <VColumn 
+            label={curr.label}
+            dataKey={curr.prop}
+            width={100}
+            headerRenderer={headerRenderer}
+        />
+    );
+    return (
+        {items}
+    )
+}
 
 class ListPane extends React.Component {
     constructor(props) {
@@ -24,7 +53,7 @@ class ListPane extends React.Component {
         })
     }
 
-    
+
     shouldComponentUpdate(nextProps, nextState) {
         if(this.props.dbg.indexOf("Disable Listpane Rerender") !== -1) {
             console.error("Listpane Rerender disabled");
@@ -86,20 +115,21 @@ class ListPane extends React.Component {
                     /> 
                 }
                 { this.props.dbg.indexOf("Toggle Elements UI Table") === -1 &&
-                    <NewTable
-                        key="XDDDD"
-                        style={{width: '98.5%', marginLeft: '1em'}}
-                        columns={this.props.newColumns}
-                        dataSource={this.state.data.filter(row => this.filterSearch(row))}
-                        pagination={{pageSize : 200 }}
-                        scroll={{ y : 500}}
-                        onRow={(record, rowIndex) => {
-                            return {
-                                onClick: (e) => this.props.callback(record),
-                            }
-                        }}
-                    />
-                }
+                    <VTable
+                        width={500}
+                        height={this.props.height}
+                        headerHeight={20}
+                        rowHeight={30}
+                        rowCount={this.state.data.length}
+                        rowGetter={({index}) => this.state.data[index]}
+                        >
+                            <VColumn
+                                dataKey='index'
+                                headerRenderer={headerRenderer}
+                                width={100}
+                            />
+                        </VTable>
+                } 
                 </>
             </React.Fragment>
         )
