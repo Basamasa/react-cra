@@ -1,5 +1,5 @@
 # react-app
-Basic starting Framework for React with Elements UI
+Basic starting Framework for React with Elements UI & AntD using create-react-app
 
 ## Project setup (initial)
 ```

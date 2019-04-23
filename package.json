@@ -1,5 +1,5 @@
 {
-  "name": "react-nowebpack",
+  "name": "react-cra",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,6 +9,7 @@
     "eslint": "^5.16.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-hot-loader": "^4.8.4",
     "react-scripts": "3.0.0"
   },
   "scripts": {
