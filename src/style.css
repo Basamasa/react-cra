@@ -1,0 +1,48 @@
+.el-select-dropdown__item{
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+.el-popover{
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+.el-date-picker {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+.el-dropdown-menu__item {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+.el-form-item__content {
+  margin-left: 7em !important;
+}
+.el-form-item__label {
+  color: #EFF2F7;
+  width:7em !important;
+}
+textarea{
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
+#app {
+  height: 1550px;
+  background: #323639;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.el-input__inner{
+  padding: 0 5px;
+}​
+#header{
+  overflow: hidden;
+}
+html, body
+{
+    margin: 0px; padding: 0px
+}
+.el-tabs__item {
+  color: #F9FAFC;
+}
+.el-tabs__item.is-active {
+  color: #58B7FF;
+}
+.el-tabs__item:hover {
+  color: #F7BA2A;
+}
