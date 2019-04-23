@@ -98,7 +98,7 @@ export class FormFactory{
         return this.build();
     }   
     textInput(label,key=label.toLowerCase(), type="text"){
-        if(this.allLabelWithColon && !label.endsWith(':') && type!="boolean"){
+        if(this.allLabelWithColon && !label.endsWith(':') && type!=="boolean"){
             this.getInput().label=label+":";
         } else{
             this.getInput().label=label;

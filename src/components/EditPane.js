@@ -17,7 +17,7 @@ function MyForm(props) {
                 }
                 {
                     x.type==='boolean' &&
-                    <Checkbox key={["checkbox", x.key].join('_')}checked={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)}></Checkbox>
+                    <Checkbox key={["checkbox", x.key].join('_')} checked={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)}></Checkbox>
                 }
                 {
                     x.type==='lookup' &&

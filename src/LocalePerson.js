@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Button, Checkbox } from 'element-react';
+import { Layout, Button, Checkbox, Select, InputNumber } from 'element-react';
 import ListPane from "./components/ListPane";
 import EditPane from "./components/EditPane";
 import { Person, PersonService } from "./model/Person.js";
@@ -18,10 +18,22 @@ class LocalePerson extends React.Component {
         this.myListPane = React.createRef();
         this.myEditPane = React.createRef();
         this.state = {
-            devtools: ["Toggle Elements UI Table"],
+            devtools: [],
+            uis: [{
+                value: 'elementsui',
+                label: 'Elements UI'
+            }, {
+                value: 'antd',
+                label: 'Ant Design'
+            }, {
+                value: 'reactv',
+                label: 'React-Virtualized'
+            }],
+            value: 'elementsui',
             selection : null,
             myPerson : new Person(),
             table: new PersonService().createPersons(100),
+            tblsize : 100,
             listerConfig: {
                 columns:[
                     column.create("Id").type('number').alignCenter().build(),
@@ -221,6 +233,12 @@ class LocalePerson extends React.Component {
         }
     }
 
+    inc(e) {
+        this.setState({
+            table: new PersonService().createPersons(e),
+        }, () => this.myListPane.current.changeState(this.state.table));
+    }
+
     render() {
         console.warn("LOCALEPERSON RERENDER");
         return (    
@@ -230,9 +248,15 @@ class LocalePerson extends React.Component {
                         <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable LocalePerson Rerender"></Checkbox>
                         <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable Listpane Rerender"></Checkbox>
                         <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable Editpane Rerender"></Checkbox>
-                        <Checkbox style={{color: 'rgb(250,250,250)'}} label="Toggle Elements UI Table"></Checkbox>
                     </Checkbox.Group>
+                    <Select style={{marginLeft: '1em'}} value={this.state.value} onChange={(e)=>this.setState({value : e})}>
+                        {   this.state.uis.map(el => {
+                                return <Select.Option key={el.value} label={el.label} value={el.value} />
+                            })
+                        }
+                    </Select>
                     <Button style={{marginLeft: '1em',marginTop: '1em'}} onClick={() => {this.setState({test : Math.random()*(1000 - 1) + 1})}} type="secondary" key="ForceR">Force Rerender</Button>
+                    <InputNumber style={{marginLeft: '1em'}} defaultValue={100} min="1" max="10000" value={this.state.tblsize} onChange={(e) => this.inc(e)}/>
                     <ListPane 
                         height="300"
                         data={this.state.table}
@@ -242,6 +266,7 @@ class LocalePerson extends React.Component {
                         callback={this.handleClick}
                         buttonClicks={e => this.handleButton(e)}
                         dbg={this.state.devtools}
+                        ui={this.state.value}
                         newColumns={this.state.newLister.columns}
                     />
                     <EditPane 
