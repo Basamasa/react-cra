@@ -11,6 +11,7 @@ class CheckboxWithLabel extends React.Component {
     return (
       <label>
         <input
+          key="TEST"
           type="checkbox"
           checked={this.state.isChecked}
           onChange={this.onChange}
