@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs } from 'element-react';
+import { Tabs } from 'element-react/next';
 import LocalePerson from "./LocalePerson";
 import Link from './Link.react';
 /*

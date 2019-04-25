@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Dropdown, Input, Button } from 'element-react';
+import { Layout, Dropdown, Input, Button } from 'element-react/next';
 
 function BtnList(props) {
     const btns = ["Copy", "Delete", "New"];

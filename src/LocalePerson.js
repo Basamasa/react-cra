@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Button, Checkbox, Select, InputNumber } from 'element-react';
+import { Layout, Button, Checkbox, Select, InputNumber } from 'element-react/next';
 import ListPane from "./components/ListPane";
 import EditPane from "./components/EditPane";
 import { Person, PersonService } from "./model/Person.js";

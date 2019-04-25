@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react';
+import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react/next';
 import ButtonPane from './ButtonPane';
 import { Person } from '../model/Person';
 

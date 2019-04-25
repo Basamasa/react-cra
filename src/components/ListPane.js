@@ -1,11 +1,11 @@
 /* eslint-disable no-unused-expressions */
 
 import React from 'react';
-import { Table } from 'element-react';
+import { Table } from 'element-react/next';
 import ButtonPane from './ButtonPane';
-import NewTable from 'antd/lib/table';
-import 'antd/lib/table/style/index.css';
-import 'antd/lib/pagination/style/index.css';
+import NewTable from 'antd/es/table';
+import 'antd/es/table/style/index.css'
+import 'antd/es/pagination/style/index.css';
 import { Column as VColumn, Table as VTable, SortDirection, SortIndicator} from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
