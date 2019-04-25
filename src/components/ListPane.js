@@ -173,7 +173,7 @@ class ListPane extends React.Component {
                 { this.props.ui === "reactv" &&
                     <VTable
                         style={{width: '98.5%', background: '#FFFFFF', marginLeft: '1em', marginBottom: '1em', fontSize: '14px', color: '#1f2d3d'}}
-                        width={window.outerWidth-46}
+                        width={window.innerWidth-59}
                         height={600}
                         headerHeight={30}
                         rowHeight={40}

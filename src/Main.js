@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs } from 'element-react';
 import LocalePerson from "./LocalePerson";
+import Link from './Link.react';
 /*
 import person from './Person.jsx';
 import swapi from './Swapi.jsx';
@@ -12,7 +13,7 @@ class Main extends React.Component {
             <div id="app">
                 <div id="header">
                     <img src="background.png" style={{width: '100%'}}/>
-                    <p style={{position: 'absolute', top: '-5px', left: '40px', color: 'red', fontSize:'25px'}}>dbh</p>
+                    <Link page="https://www.dbh.de/" style={{position: 'absolute', top: '-5px', left: '40px', color: 'red', fontSize:'25px'}}>dbh</Link>
                 </div>
                 <div id="tabs">
                     <Tabs activeName="2">
