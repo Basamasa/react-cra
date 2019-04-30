@@ -196,6 +196,8 @@ class LocalePerson extends React.Component {
                     this.newPerson(this.state.selection);
                 }
                 break;
+            default:
+                break;
         }
     }
 

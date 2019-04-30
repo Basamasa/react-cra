@@ -1,6 +1,5 @@
 import React from 'react';
 import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react/next';
-import ButtonPane from './ButtonPane';
 import { Person } from '../model/Person';
 
 function MyForm(props) {
@@ -25,7 +24,7 @@ function MyForm(props) {
                 }
                 {
                     x.type==='date' &&
-                    <DatePicker style={{width:'100%'}} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder} value={props.model[x.key]==undefined ? props.model[x.key] : new Date(props.model[x.key])}>
+                    <DatePicker style={{width:'100%'}} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder} value={props.model[x.key]===undefined ? props.model[x.key] : new Date(props.model[x.key])}>
                     </DatePicker>
                 }
                 {
@@ -163,6 +162,8 @@ class EditPane extends React.Component {
                 break;
             case 'birthday':
                 newPerson.birthday = key;
+                break;
+            default:
                 break;
         }
         this.setState({

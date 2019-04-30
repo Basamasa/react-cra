@@ -12,7 +12,7 @@ class Main extends React.Component {
         return (
             <div id="app">
                 <div id="header">
-                    <img src="background.png" style={{width: '100%'}}/>
+                    <img alt="" src="background.png" style={{width: '100%'}}/>
                     <p style={{position: 'absolute', top: '-5px', left: '40px', color: 'red', fontSize:'25px'}}>dbh</p>
                 </div>
                 <div id="tabs">

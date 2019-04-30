@@ -6,7 +6,7 @@ import ButtonPane from './ButtonPane';
 import NewTable from 'antd/es/table';
 import 'antd/es/table/style/index.css'
 import 'antd/es/pagination/style/index.css';
-import { Column as VColumn, Table as VTable, SortDirection, SortIndicator } from 'react-virtualized';
+import { Column as VColumn, Table as VTable, SortDirection } from 'react-virtualized';
 import 'react-virtualized/styles.css';
 
 const headerRowRenderer = ({
