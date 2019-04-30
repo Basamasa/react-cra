@@ -1,13 +1,12 @@
-<NewTable
-                        key="XDDDD"
-                        style={{width: '98.5%', marginLeft: '1em'}}
-                        columns={this.props.newColumns}
-                        dataSource={this.state.data.filter(row => this.filterSearch(row))}
-                        pagination={{pageSize : 200 }}
-                        scroll={{ y : 500}}
-                        onRow={(record, rowIndex) => {
-                            return {
-                                onClick: (e) => this.props.callback(record),
-                            }
-                        }}
-                    />
+import React from 'react';
+import { create } from "react-test-renderer"
+import LocalePerson from '../LocalePerson';
+
+describe ("ButtonPane Component", () => {
+    test("Clicking New will create a new row", () => {
+        const component = create(<LocalePerson />);
+        const rootInstance = component.root;
+        const Button = rootInstance.findByType("button");
+        console.log(Button)
+    })   
+})

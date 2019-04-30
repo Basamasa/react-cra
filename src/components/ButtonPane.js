@@ -9,7 +9,7 @@ function BtnList(props) {
         </Button>
     );
     return (
-        <ul style={{marginRight: '1em'}}>{items}</ul>
+        <ul className="myButtons" style={{marginRight: '1em'}}>{items}</ul>
     )
 }
 

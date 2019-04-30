@@ -6,7 +6,8 @@
     "antd": "^3.16.3",
     "element-react": "^1.4.33",
     "element-theme-default": "^1.4.13",
-    "eslint": "^5.16.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.8.4",
@@ -16,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --transformIgnorePatterns \"node_modules/(?!element-react)/\"",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -32,6 +33,8 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-plugin-react": "^7.12.4",
     "react-test-renderer": "^16.8.6",
     "react-testing-library": "^6.1.2"
   }
