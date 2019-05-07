@@ -2,14 +2,13 @@ import React from 'react';
 import { Layout, Dropdown, Input, Button } from 'element-react/next';
 
 interface btnProps{
-    clicks : Function;
-
+    buttonClicks: (name: string, e: Event) => void;
 }
 
 function BtnList(props: btnProps) {
     const btns = ["Copy", "Delete", "New"];
     const items = btns.map((curr) => 
-        <Button onClick={(e: Event) => props.clicks(curr.toString(), e)} type="secondary" style={{ paddingTop: '7px', paddingBottom: '7px'}} key={curr.toString()}>
+        <Button onClick={(e: Event) => props.buttonClicks(curr.toString(), e)} type="secondary" style={{ paddingTop: '7px', paddingBottom: '7px'}} key={curr.toString()}>
             {curr}
         </Button>
     );
@@ -20,8 +19,8 @@ function BtnList(props: btnProps) {
 
 interface IProps {
     searchAble: boolean;
-    buttonClicks: Function;
-    search: Function;
+    search: (searchText: string) => () => void;
+    buttonClicks: (name: string) => void;
 }
 
 interface IState {
@@ -68,7 +67,7 @@ class ButtonPane extends React.Component<IProps, IState> {
                                     </Button>
                                 </Dropdown>
                             }
-                            <BtnList clicks={(e: any) => this.props.buttonClicks(e)} />
+                            <BtnList buttonClicks={(e: any) => this.props.buttonClicks(e)} />
                         </Layout.Col>
                     </Layout.Row>
                 }
