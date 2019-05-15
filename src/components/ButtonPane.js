@@ -1,14 +1,10 @@
 import React from 'react';
 import { Layout, Dropdown, Input, Button } from 'element-react/next';
 
-interface btnProps{
-    buttonClicks: (name: string, e: Event) => void;
-}
-
-function BtnList(props: btnProps) {
+function BtnList(props) {
     const btns = ["Copy", "Delete", "New"];
     const items = btns.map((curr) => 
-        <Button onClick={(e: Event) => props.buttonClicks(curr.toString(), e)} type="secondary" style={{ paddingTop: '7px', paddingBottom: '7px'}} key={curr.toString()}>
+        <Button onClick={(e) => props.clicks(curr.toString(), e)} type="secondary" style={{ paddingTop: '7px', paddingBottom: '7px'}} key={curr.toString()}>
             {curr}
         </Button>
     );
@@ -17,27 +13,16 @@ function BtnList(props: btnProps) {
     )
 }
 
-interface IProps {
-    searchAble: boolean;
-    search: (searchText: string) => () => void;
-    buttonClicks: (name: string) => void;
-}
-
-interface IState {
-    searchInput: string;
-    searchAble: boolean;
-}
-
-class ButtonPane extends React.Component<IProps, IState> {
-    constructor(props: IProps) {
+class ButtonPane extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
-            searchInput: '',
+            searchText: '',
             searchAble: props.searchAble,
         };
     }
 
-    handleChange(value: string) {
+    handleChange(value) {
         this.setState({
             searchInput: value
         },this.props.search(value));
@@ -49,7 +34,7 @@ class ButtonPane extends React.Component<IProps, IState> {
                 {true &&  // hasCommands etc.
                     <Layout.Row style={{background:'#323639'}}>
                         <Layout.Col style={{marginTop: '1em'}} span={this.state.searchAble?4:0}>
-                            <Input style={{paddingLeft: '1em'}} value={this.state.searchInput} placeholder="search" size="small" onChange={(e: string) => this.handleChange(e)}/>
+                            <Input style={{paddingLeft: '1em'}} value={this.state.searchInput} placeholder="search" size="small" onChange={(e) => this.handleChange(e)}/>
                         </Layout.Col>
                         <Layout.Col span={this.state.searchAble?20:24} style={{textAlign:'end'}}>
                             {false &&
@@ -67,7 +52,7 @@ class ButtonPane extends React.Component<IProps, IState> {
                                     </Button>
                                 </Dropdown>
                             }
-                            <BtnList buttonClicks={(e: any) => this.props.buttonClicks(e)} />
+                            <BtnList clicks={(e) => this.props.buttonClicks(e)} />
                         </Layout.Col>
                     </Layout.Row>
                 }

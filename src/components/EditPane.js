@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react/next';
 import { Person } from '../model/Person';
+import ProxyField from './ProxyField';
 
 function MyForm(props) {
     var x = props.todo;
@@ -20,7 +21,8 @@ function MyForm(props) {
                 }
                 {
                     x.type==='lookup' &&
-                    <React.Fragment></React.Fragment>
+                    <ProxyField  value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
+        
                 }
                 {
                     x.type==='date' &&
