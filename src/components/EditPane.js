@@ -21,7 +21,7 @@ function MyForm(props) {
                 }
                 {
                     x.type==='lookup' &&
-                    <ProxyField  value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
+                    <ProxyField callback={props.proxyBack} value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
         
                 }
                 {
@@ -70,6 +70,7 @@ function MyLayout(props) {
                                 temp={i}
                                 model={props.model}
                                 callback={props.callback}
+                                proxyBack={props.proxyBack}
                                 >
                             </MyCol>
                     </Layout.Row>);
@@ -95,6 +96,7 @@ function MyCol(props) {
                                     todo={u}
                                     model={props.model}
                                     callback={props.callback}
+                                    proxyBack={props.proxyBack}
                                     >
                                 </MyForm>
                         </Layout.Col>);
@@ -133,6 +135,10 @@ class EditPane extends React.Component {
         return true;
     }
 
+    proxyBack(e) {
+        this.callBack(e, null, "second");
+    }
+
     callBack(key, e, index) {
         let temp = new Person();
         let newPerson = Object.assign(temp, this.state.myPerson);
@@ -142,6 +148,9 @@ class EditPane extends React.Component {
                 break;
             case 'first':
                 newPerson.first = key;
+                break;
+            case 'second':
+                newPerson.second = key;
                 break;
             case 'city':
                 newPerson.city = key;
@@ -199,6 +208,7 @@ class EditPane extends React.Component {
                         gutter={this.props.gutter}
                         model={this.state.myPerson}
                         callback={(key, e, i) => this.callBack(key, e, i)}
+                        proxyBack={(e) => this.proxyBack(e)}
                     />
                 </Form>
             </div>
