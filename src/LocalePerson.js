@@ -126,8 +126,8 @@ class LocalePerson extends React.Component {
     */
     handleClick = (row) => {
         this.setState({
-            selection : row,
-            myPerson : row,
+            selection : this.state.table[row.id],
+            myPerson : this.state.table[row.id],
         }, () => this.myEditPane.current.changeState(this.state.myPerson));  // callback cuz setState is asynchronous
     }
 

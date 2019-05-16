@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react/next';
 import { Person } from '../model/Person';
+import ProxyField from './ProxyField';
 
 function MyForm(props) {
     var x = props.todo;
@@ -20,7 +21,8 @@ function MyForm(props) {
                 }
                 {
                     x.type==='lookup' &&
-                    <React.Fragment></React.Fragment>
+                    <ProxyField  value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
+        
                 }
                 {
                     x.type==='date' &&
@@ -29,14 +31,19 @@ function MyForm(props) {
                 }
                 {
                     x.type==='select' &&
-                    <Select filterable style={{width:'100%'}} value={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder}>
+                    <Select onChange={(key, e, i) => props.callback(key, props.model, x.key)} filterable style={{width:'100%'}} value={props.model[x.key]} placeholder={x.placeHolder}>
+                        {   
+                            x.table.map(el => {
+                                return <Select.Option key={["checkbox", x.table.indexOf(el)].join('_')} label={el.guiRep()} value={el.guiRep()}></Select.Option>
+                            })
+                        }
                     </Select>
                 }
                 {
                     x.type==='hr' &&
                     <hr style={{height: '2px', backgroundColor: 'rgb(255,255,255)', border: 'none', margin: '1.2em auto', width: '99%'}}></hr>
                 }
-        </Form.Item> 
+        </Form.Item>
     )
 }
 
@@ -162,6 +169,12 @@ class EditPane extends React.Component {
                 break;
             case 'birthday':
                 newPerson.birthday = key;
+                break;
+            case 'nickname':
+                newPerson.nickname = key;
+                break;
+            case 'adress':
+                newPerson.adress = key;
                 break;
             default:
                 break;
