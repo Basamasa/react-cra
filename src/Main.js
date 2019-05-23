@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tabs } from 'element-react/next';
 import LocalePerson from "./LocalePerson";
+import PrimeShowcase from "./PrimeShowcase";
 
 /*
 import person from './Person.jsx';
@@ -19,6 +20,7 @@ class Main extends React.Component {
                     <Tabs activeName="2">
                         <Tabs.Pane label="Star Wars API" name="1">  </Tabs.Pane>
                         <Tabs.Pane label="Locale Persons" name="2"> <LocalePerson />  </Tabs.Pane>
+                        <Tabs.Pane label="Prime Playground" name="3"> <PrimeShowcase /> </Tabs.Pane>
                     </Tabs>
                 </div>
             </div>

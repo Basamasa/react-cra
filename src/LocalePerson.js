@@ -247,9 +247,10 @@ class LocalePerson extends React.Component {
             <>
                 <Layout.Row>
                     <Checkbox.Group style={{marginLeft: '1em'}} value={this.state.devtools}>
-                        <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable LocalePerson Rerender"></Checkbox>
-                        <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable Listpane Rerender"></Checkbox>
-                        <Checkbox style={{color: 'rgb(250,250,250)'}} label="Disable Editpane Rerender"></Checkbox>
+                        <Checkbox label="Disable LocalePerson Rerender"></Checkbox>
+                        <Checkbox label="Disable Listpane Rerender"></Checkbox>
+                        <Checkbox label="Disable Editpane Rerender"></Checkbox>
+                        <Checkbox label="Enable Primefaces"></Checkbox>
                     </Checkbox.Group>
                     <Select style={{marginLeft: '1em'}} value={this.state.value} onChange={(e)=>this.setState({value : e})}>
                         {   this.state.uis.map(el => {

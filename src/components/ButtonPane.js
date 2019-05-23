@@ -32,7 +32,7 @@ class ButtonPane extends React.Component {
         return (
             <div>
                 {true &&  // hasCommands etc.
-                    <Layout.Row style={{background:'#323639'}}>
+                    <Layout.Row style={{background:'#ecf0f1'}}>
                         <Layout.Col style={{marginTop: '1em'}} span={this.state.searchAble?4:0}>
                             <Input style={{paddingLeft: '1em'}} value={this.state.searchInput} placeholder="search" size="small" onChange={(e) => this.handleChange(e)}/>
                         </Layout.Col>

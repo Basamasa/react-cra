@@ -2,48 +2,103 @@ import React from 'react';
 import { Form, Layout, Input, Checkbox, DatePicker, Select } from 'element-react/next';
 import { Person } from '../model/Person';
 import ProxyField from './ProxyField';
+import { InputText } from 'primereact/inputtext';
+import { InputTextarea } from 'primereact/inputtextarea';
+import { Checkbox as PrimeCheckbox } from 'primereact/checkbox';
+import {Calendar} from 'primereact/calendar';
 
 function MyForm(props) {
     var x = props.todo;
-    return ( 
-        <Form.Item 
-            label={x.label} 
-            labelWidth={x.getLabelWidth()}>
-                {   x.type ==='text' &&
-                    <Input key={["input", x.key].join('_')} style={{marginBottom: x.bottomSpace}} value={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder}></Input>
-                }
-                {   x.type ==='area' &&
-                    <Input key={["input", x.key].join('_')} value={props.model[x.key]} placeholder={x.placeHolder} onChange={(key, e, i) => props.callback(key, props.model, x.key)} type="textarea"></Input>
-                }
-                {
-                    x.type==='boolean' &&
-                    <Checkbox key={["checkbox", x.key].join('_')} checked={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)}></Checkbox>
-                }
-                {
-                    x.type==='lookup' &&
-                    <ProxyField callback={props.proxyBack} value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
-        
-                }
-                {
-                    x.type==='date' &&
-                    <DatePicker style={{width:'100%'}} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder} value={props.model[x.key]===undefined ? props.model[x.key] : new Date(props.model[x.key])}>
-                    </DatePicker>
-                }
-                {
-                    x.type==='select' &&
-                    <Select onChange={(key, e, i) => props.callback(key, props.model, x.key)} filterable style={{width:'100%'}} value={props.model[x.key]} placeholder={x.placeHolder}>
-                        {   
-                            x.table.map(el => {
-                                return <Select.Option key={["checkbox", x.table.indexOf(el)].join('_')} label={el.guiRep()} value={el.guiRep()}></Select.Option>
-                            })
+    var prime = false;
+    if(props.dbg.indexOf("Enable Primefaces") !== -1) {
+        console.warn("Primefaces are enabled");
+        prime = true;
+    }
+    return (
+        <>
+            { prime === false && 
+                <Form.Item 
+                    label={x.label} 
+                    labelWidth={x.getLabelWidth()}>
+                        {   x.type ==='text' &&
+                            <Input key={["input", x.key].join('_')} style={{marginBottom: x.bottomSpace}} value={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder}></Input>
                         }
-                    </Select>
-                }
-                {
-                    x.type==='hr' &&
-                    <hr style={{height: '2px', backgroundColor: 'rgb(255,255,255)', border: 'none', margin: '1.2em auto', width: '99%'}}></hr>
-                }
-        </Form.Item>
+                        {   x.type ==='area' &&
+                            <Input key={["input", x.key].join('_')} value={props.model[x.key]} placeholder={x.placeHolder} onChange={(key, e, i) => props.callback(key, props.model, x.key)} type="textarea"></Input>
+                        }
+                        {
+                            x.type==='boolean' &&
+                            <Checkbox key={["checkbox", x.key].join('_')} checked={props.model[x.key]} onChange={(key, e, i) => props.callback(key, props.model, x.key)}></Checkbox>
+                        }
+                        {
+                            x.type==='lookup' &&
+                            <ProxyField prime={prime} callback={props.proxyBack} value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
+                
+                        }
+                        {
+                            x.type==='date' &&
+                            <DatePicker style={{width:'100%'}} onChange={(key, e, i) => props.callback(key, props.model, x.key)} placeholder={x.placeHolder} value={props.model[x.key]===undefined ? props.model[x.key] : new Date(props.model[x.key])}>
+                            </DatePicker>
+                        }
+                        {
+                            x.type==='select' &&
+                            <Select onChange={(key, e, i) => props.callback(key, props.model, x.key)} filterable style={{width:'100%'}} value={props.model[x.key]} placeholder={x.placeHolder}>
+                                {   
+                                    x.table.map(el => {
+                                        return <Select.Option key={["checkbox", x.table.indexOf(el)].join('_')} label={el.guiRep()} value={el.guiRep()}></Select.Option>
+                                    })
+                                }
+                            </Select>
+                        }
+                        {
+                            x.type==='hr' &&
+                            <hr style={{height: '2px', backgroundColor: '#34495e', border: 'none', margin: '1.2em auto', width: '99%'}}></hr>
+                        }
+                </Form.Item> }
+            { prime === true &&
+                <Form.Item>
+                        {   x.type ==='text' &&
+                                <span style={{marginBottom: x.bottomSpace}} key={["input", x.key].join('_')} className="p-float-label">
+                                    <InputText style={{width: '100%'}} id="in" value={props.model[x.key]} onChange={(key, e, i) => props.callback(key.target.value, props.model, x.key)} />
+                                    <label htmlFor="in">{x.label}</label>
+                                </span>
+                        }
+                        {   x.type ==='area' &&
+                            <InputTextarea placeholder={x.placeHolder} key={["input", x.key].join('_')} rows={3} cols={182} value={props.model[x.key]} onChange={(key, e, i) => props.callback(key.target.value, props.model, x.key)} autoResize={true} />
+                        }
+                        {
+                            x.type==='boolean' &&
+                                <div key={["checkbox", x.key].join('_')} className="p-col-12">
+                                    <PrimeCheckbox inputId="cb1" value="Male" onChange={(key, e, i) => props.callback(key, props.model, x.key)} checked={props.model[x.key]}></PrimeCheckbox>
+                                    <label htmlFor="cb1" className="p-checkbox-label">Male</label>
+                                </div>
+                        }
+                        {
+                            x.type==='lookup' &&
+                            <ProxyField prime={prime} callback={props.proxyBack} value={props.model[x.key]} placeholder={x.placeHolder} table={x.table} columns={x.columns} />
+                
+                        }
+                        {
+                            x.type==='date' &&
+                            <Calendar placeholder={x.placeHolder} value={props.model[x.key]===undefined ? props.model[x.key] : new Date(props.model[x.key])} onChange={(key, e, i) => props.callback(key.target.value, props.model, x.key)} showIcon={true} />
+                        }
+                        {
+                            x.type==='select' &&
+                            <Select onChange={(key, e, i) => props.callback(key, props.model, x.key)} filterable style={{width:'100%'}} value={props.model[x.key]} placeholder={x.placeHolder}>
+                                {   
+                                    x.table.map(el => {
+                                        return <Select.Option key={["checkbox", x.table.indexOf(el)].join('_')} label={el.guiRep()} value={el.guiRep()}></Select.Option>
+                                    })
+                                }
+                            </Select>
+                        }
+                        {
+                            x.type==='hr' &&
+                            <hr style={{height: '2px', backgroundColor: '#34495e', border: 'none', margin: '1.2em auto', width: '99%'}}></hr>
+                        }
+                </Form.Item>
+            }
+        </>
     )
 }
 
@@ -67,6 +122,7 @@ function MyLayout(props) {
                         gutter={props.gutter}
                         >
                             <MyCol
+                                dbg={props.dbg}
                                 temp={i}
                                 model={props.model}
                                 callback={props.callback}
@@ -93,6 +149,7 @@ function MyCol(props) {
                             offset={u.offset}
                             >
                                 <MyForm 
+                                    dbg={props.dbg}
                                     todo={u}
                                     model={props.model}
                                     callback={props.callback}
@@ -177,7 +234,7 @@ class EditPane extends React.Component {
                 }
                 break;
             case 'birthday':
-                newPerson.birthday = key;
+                newPerson.birthday = key.toDateString();
                 break;
             case 'nickname':
                 newPerson.nickname = key;
@@ -199,11 +256,12 @@ class EditPane extends React.Component {
             <div style={{'width': this.state.width}}>
                 <Form 
                     labelPosition={this.state.labelPosition}
-                    style={{width: '98.5%', marginLeft: '1em', background:'#323639'}}
+                    style={{width: '98.5%', marginLeft: '1em', background:'#ecf0f1'}}
                     className="en-US" 
                     model={this.state.myPerson}
                     >
                     <MyLayout 
+                        dbg={this.props.dbg}
                         inputs={this.props.inputs}
                         gutter={this.props.gutter}
                         model={this.state.myPerson}
